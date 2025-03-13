@@ -8,11 +8,6 @@ class Pessoa {
         peso = novoPeso;
         apontando = null;
     }
-
-    @Override
-    public String toString() {
-        return nome + " - " + peso + "kg";
-    }
 }
 
 class Pilha {
