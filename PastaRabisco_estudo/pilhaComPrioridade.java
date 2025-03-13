@@ -67,10 +67,6 @@ class Pilha {
         return -1;
     }
 
-    int qntItens() {
-        return tamanho;
-    }
-
     void exibir() {
         Pessoa atual = topo;
 
