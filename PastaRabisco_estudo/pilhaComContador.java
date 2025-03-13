@@ -1,63 +1,59 @@
-class Pessoa {
+class Pessoa{
     String nome;
     Pessoa apontando;
 
-    Pessoa(String novoNome) {
+    Pessoa (String novoNome){
         nome = novoNome;
         apontando = null;
     }
 }
 
-class Pilha {
+
+class Pilha{
     Pessoa topo;
     int tamanho;
 
-    Pilha() {
-        topo = null; // Inicializa a pilha vazia
-        tamanho = 0; // Inicializa o tamanho da pilha
+    Pilha(){
+        topo = null;
+        tamanho = 0;
     }
 
-    // Função para empilhar um novo item
-    void empilhar(String nome) {
+    void empilhar (String nome){
         Pessoa novaPessoa = new Pessoa(nome);
-        novaPessoa.apontando = topo; // Nova pessoa aponta para o topo atual
-        topo = novaPessoa; // Atualiza o topo para a nova pessoa
-        tamanho++; // Aumenta o tamanho da pilha
+        novaPessoa.apontando = topo;
+        topo = novaPessoa;
+        tamanho ++;
     }
 
-    // Função para desempilhar o item do topo
-    String desempilhar() {
+    void desempilhar() {
         if (topo == null) {
-            System.out.println("Fila ta Vazia já");
+            System.out.println("Fila está vazia.");
+            return;
         }
-        String nomeRemovido = topo.nome; // Armazena o nome do topo
-        topo = topo.apontando; // Atualiza o topo para o próximo item
-        tamanho--; // Diminui o tamanho da pilha
-        return nomeRemovido; // Retorna o nome removido
+        topo = topo.apontando;
+        tamanho--;
     }
 
-    // Função para buscar um item na pilha e retornar sua posição
-    int buscar(String nome) {
+
+    int buscar(String nome){
         Pessoa atual = topo;
         int posicao = 1;
 
-        while (atual != null) {
-            if (atual.nome.equals(nome)) { // Verifica se o nome corresponde
-                return posicao; // Retorna a posição quando encontrado
+        while( atual != null ){
+            if (!atual.nome.equals(nome)){
+                return posicao;
             }
-            atual = atual.apontando; // Avança para o próximo item
-            posicao++; // Aumenta a posição
+            atual = atual.apontando;
+            posicao ++;
         }
-        return -1; // Retorna -1 se o item não for encontrado
+        return -1;
     }
-
-    // Função para exibir os itens da pilha
-    void exibir() {
+    void exibir(){
         Pessoa atual = topo;
 
-        while (atual != null) {
-            System.out.println(atual.nome); // Exibe o nome do item
-            atual = atual.apontando; // Avança para o próximo item
+        while (topo != null){
+            System.out.println(atual);
+            atual = atual.apontando;
         }
     }
 }
@@ -66,23 +62,19 @@ public class pilhaComContador {
     public static void main(String[] args) {
         Pilha pilha = new Pilha();
 
-        // Empilhando elementos
-        pilha.empilhar("Ana");
-        pilha.empilhar("Carlos");
-        pilha.empilhar("Bruno");
+        pilha.empilhar("Alice");
+        pilha.empilhar("Bob");
+        pilha.empilhar("Charlie");
 
-        // Exibindo a pilha
+        System.out.println("Elementos na pilha:");
         pilha.exibir();
 
-        // Buscando elementos na pilha
-        System.out.println("\nPosição de Carlos: " + pilha.buscar("Carlos"));
-        System.out.println("Posição de Diana: " + pilha.buscar("Diana"));
+        System.out.println("\nPosição de Bob: " + pilha.buscar("Bob"));
 
-        // Desempilhando elementos
-        System.out.println("\nDesempilhado: " + pilha.desempilhar());
+        System.out.println("\nDesempilhando...");
+        pilha.desempilhar();
+
+        System.out.println("\nElementos na pilha após desempilhar:");
         pilha.exibir();
-
-        // Buscando após desempilhar
-        System.out.println("\nPosição de Carlos após desempilhar: " + pilha.buscar("Carlos"));
     }
 }
